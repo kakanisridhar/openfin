@@ -11,6 +11,8 @@ const config = require('./webpack-dev-config.js');
 const Port = 3000;
 const Host = 'localhost';
 
+let server;
+
 const options = {
   host: Host,
   // Enable webpack's Hot Module Replacement feature
@@ -38,6 +40,6 @@ const options = {
 
 WebpackDevServer.addDevServerEntrypoints(config, options);
 const compiler = webpack(config);
-const server = new WebpackDevServer(compiler, options);
+server = new WebpackDevServer(compiler, options);
 
 server.listen(Port, Host, () => {});

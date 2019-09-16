@@ -13,7 +13,7 @@ module.exports = {
   appAssets: resolveApp('src/assets'), // For images and other assets
   appBuild: resolveApp('build'), // Prod built files end up here
   appConfig: resolveApp('config'), // App config files
-  appScreens: resolveApp('src/screens'),
+  appScreens: path.join('src', 'screens', path.sep),
   appHtml: resolveApp('src/screens/index.html'),
   appIndexJs: resolveApp('src/screens/index.jsx'), // Main entry point
   appSrc: resolveApp('src'), // App source

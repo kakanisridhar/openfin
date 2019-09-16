@@ -1,9 +1,9 @@
 // @flow
 import React from 'react';
 import Button from 'Components/button';
-import style from './app.css';
+import style from './screen1.css';
 
-const App = () => {
+const Screen1 = () => {
   const buttonText: string = 'React to it!';
   return (
     <div className={style.app}>
@@ -12,9 +12,9 @@ const App = () => {
         🚀
       </span>
       <Button>{buttonText}</Button>
-      Is HMR working?
+      HMR
     </div>
   );
 };
 
-export default App;
+export default Screen1;
