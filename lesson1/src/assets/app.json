@@ -1,0 +1,18 @@
+{
+  "startup_app": {
+    "name": "Learning openfin",
+    "description": "Learning openfin",
+    "url": "http://localhost:3000/Welcome",
+    "uuid": "mridasoft-learning-openfin",
+    "autoShow": true
+  },
+  "runtime": {
+    "arguments": "",
+    "version": "beta"
+  },
+  "shortcut": {
+    "company": "Mridasoft",
+    "description": "Learning openfin",
+    "name": "Learning openfin"
+  }
+}
