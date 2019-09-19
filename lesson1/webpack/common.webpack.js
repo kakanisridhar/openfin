@@ -3,6 +3,7 @@ require('dotenv').config();
 
 const webpack = require('webpack');
 const path = require('path');
+const fg = require('fast-glob');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
@@ -11,27 +12,34 @@ const getFilesFromDir = require('./files');
 
 const PAGE_DIR = paths.appScreens;
 
-const htmlPlugins = getFilesFromDir(PAGE_DIR, ['.html']).map(filePath => {
-  const fileName = filePath.replace(PAGE_DIR, '');
-  return new HtmlWebpackPlugin({
-    chunks: [fileName.replace(path.extname(fileName), ''), 'vendor'],
-    template: filePath,
-    filename: fileName,
-  });
+const jsFiles = fg.sync(['*.jsx', '*.tsx', '**/index.jsx', '**/index.tsx'], {
+  cwd: PAGE_DIR,
+  onlyFiles: true,
+  deep: 2
 });
 
-const entryScreens = getFilesFromDir(PAGE_DIR, ['.tsx',]).reduce(
-  (obj, filePath) => {
-    const entryChunkName = filePath
-      .replace(path.extname(filePath), '')
-      .replace(PAGE_DIR, '');
-
-    // eslint-disable-next-line no-param-reassign
-    obj[entryChunkName] = `./${filePath}`;
-    return obj;
-  },
-  {},
+const htmlFiles = fg.sync(['*.html', '**/index.html'], {
+    cwd: PAGE_DIR,
+    onlyFiles: true,
+    deep: 2
+  }
 );
+
+const entryScreens = jsFiles.reduce((obj, S) => {
+  // eslint-disable-next-line no-param-reassign
+  obj[S] = `${PAGE_DIR}/${S}`;
+  return obj;
+},
+{},
+);
+
+const htmlPlugins = htmlFiles.map(fileName => {
+    return new HtmlWebpackPlugin({
+      chunks: [fileName.replace(path.extname(fileName), ''), 'vendor'],
+      template: `${PAGE_DIR}/${fileName}`,
+      filename: fileName,
+    });
+  });
 
 module.exports = {
   mode: 'development',
