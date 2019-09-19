@@ -2,7 +2,7 @@
     "startup_app": {
         "name": "Learning openfin",
         "description": "Learning openfin",
-        "url": "http://localhost:3000/Welcome",
+        "url": "http://localhost:3000/Welcome.html",
         "uuid": "mridasoft-learning-openfin",
         "autoShow": true
     },

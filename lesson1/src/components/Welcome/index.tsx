@@ -6,7 +6,7 @@ import Header from '../Header';
 const Welcome: FunctionComponent<{}> = () => (
   <Fragment>
     <Header />
-    Welcome to openfin, HMR is working in openfin too
+    hmr or full refresh
   </Fragment>
 );
 
