@@ -6,7 +6,7 @@ import Header from '../Header';
 const Welcome: FunctionComponent<{}> = () => (
   <Fragment>
     <Header />
-    hmr or full refresh
+    hmr or full refresh  
   </Fragment>
 );
 

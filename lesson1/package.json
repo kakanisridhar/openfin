@@ -19,6 +19,8 @@
     "openfin"
   ],
   "dependencies": {
+    "@material-ui/core": "^4.4.2",
+    "@material-ui/icons": "^4.4.1",
     "core-js": "^3.0.1",
     "dotenv": "^7.0.0",
     "react": "^16.8.6",
@@ -46,6 +48,7 @@
     "@types/webpack-env": "^1.13.9",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
+    "@types/openfin": "latest",
     "babel-loader": "^8.0.5",
     "babel-minify-webpack-plugin": "^0.3.1",
     "babel-plugin-emotion": "^10.0.9",

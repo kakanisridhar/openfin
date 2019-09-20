@@ -19,37 +19,43 @@ const jsFiles = fg.sync(['*.jsx', '*.tsx', '**/index.jsx', '**/index.tsx'], {
 });
 
 const htmlFiles = fg.sync(['*.html', '**/index.html'], {
-    cwd: PAGE_DIR,
-    onlyFiles: true,
-    deep: 2
-  }
-);
+  cwd: PAGE_DIR,
+  onlyFiles: true,
+  deep: 2
+});
 
-const entryScreens = jsFiles.reduce((obj, fn) => {
-  // eslint-disable-next-line no-param-reassign
+function getScreenName(fn) {
   let S = fn;
   S = S.replace(path.extname(S), '');
-  if(S.includes('/'))
-    S = S.substr(0,S.indexOf('/'));
-    
+  if (S.includes('/'))
+    S = S.substr(0, S.indexOf('/'));
+  return S;
+}
+
+const entryScreens = jsFiles.reduce((obj, fn) => {
+  let S = getScreenName(fn);
   obj[S] = path.resolve(`${PAGE_DIR}/${fn}`);
   return obj;
-},
-{},
-);
+}, {}, );
 
-const htmlPlugins = htmlFiles.map(fileName => {
-    let S = fileName;
-    S = S.replace(path.extname(S), '');
-    if(S.includes('/'))
-      S = S.substr(0,S.indexOf('/'));
-
+let htmlPlugins = htmlFiles.map(fileName => {
+  let S = getScreenName(fileName);
+  if (fileName !== 'index.html') {
     return new HtmlWebpackPlugin({
       chunks: [S, 'vendor'],
       template: path.resolve(`${PAGE_DIR}/${fileName}`),
       filename: S + '.html'
     });
-  });
+  } else {
+    return new HtmlWebpackPlugin({
+      chunks: [S, 'vendor'],
+      template: path.resolve(`${PAGE_DIR}/${fileName}`),
+      filename: S + '.html',
+      screens: JSON.stringify(htmlFiles.map(getScreenName).filter(s => s !== 'index'))
+    });
+  }
+});
+
 
 
 module.exports = {
@@ -63,13 +69,13 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
     alias: {
       'react-dom': '@hot-loader/react-dom',
-      '@Components': path.resolve(paths.appSrc, 'components')
+      '@Components': path.resolve(paths.appSrc, 'components'),
+      '@Services': path.resolve(paths.appSrc, 'services')
     },
   },
 
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.(js|ts|jsx|tsx)$/,
         use: ['babel-loader'],
         exclude: /node_modules/
@@ -77,7 +83,7 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader', 'postcss-loader']
-      },      
+      },
       {
         test: /\.svg$/,
         use: ['svgo-loader']
@@ -96,27 +102,11 @@ module.exports = {
     ]
   },
   plugins: [
-    new CopyWebpackPlugin([
-      {
-        from: paths.appAssets,
-        to: '.'
-      }
-    ]),
-    ...htmlPlugins
-    ,
+    new CopyWebpackPlugin([{
+      from: paths.appAssets,
+      to: '.'
+    }]),
+    ...htmlPlugins,
     new webpack.NamedModulesPlugin()
-  ],
-  optimization: {
-    minimize: false,
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /node_modules/,
-          chunks: 'initial',
-          name: 'vendor',
-          enforce: true,
-        },
-      },
-    },
-  },
+  ],  
 };

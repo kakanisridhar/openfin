@@ -5,6 +5,9 @@
     "paths": {
       "@Components/*": [
         "./src/components"
+      ],
+      "@Services/*": [
+        "./src/services"
       ]
     },
     "outDir": "dist",
@@ -22,5 +25,5 @@
     "typeRoots": ["node_modules/@types"]
   },
   "include": ["src", "types/index.d.ts", "./typings.d.ts"],
-  "exclude": ["node_modules", "dist", "compiled", "webpack"]  
+  "exclude": ["node_modules", "dist", "compiled", "webpack"]
 }
