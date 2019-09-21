@@ -4,12 +4,12 @@
   "description": "Learning openfin with react",
   "main": "index.js",
   "scripts": {
-    "start": "npm-run-all --parallel dev launchopenfing",
-    "launchopenfing": "openfin --launch --config src/assets/app.json",
+    "start": "npm-run-all --parallel dev launchopenfin",
+    "launchopenfin": "openfin --launch --config src/assets/app.json",
     "dev": "cross-env NODE_ENV=local node webpack/webpack-dev-server.js",
     "build:dev": "rimraf build && cross-env NODE_ENV=production webpack --config webpack/common.webpack.js",
     "start:prod": "cross-env serve -s ./build/",
-    "build:prod": "cross-env NODE_ENV=production webpack --config webpack/prod.webpack --progress",
+    "build:prod": "rimraf build && cross-env NODE_ENV=production webpack --config webpack/prod.webpack --progress",
     "lint": "eslint src/**/*.{ts,tsx}",
     "lint-fix": "eslint **/*/*.tsx  --fix"
   },

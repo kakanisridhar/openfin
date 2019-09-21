@@ -36,7 +36,7 @@ const entryScreens = jsFiles.reduce((obj, fn) => {
   let S = getScreenName(fn);
   obj[S] = path.resolve(`${PAGE_DIR}/${fn}`);
   return obj;
-}, {}, );
+}, {});
 
 let htmlPlugins = htmlFiles.map(fileName => {
   let S = getScreenName(fileName);
@@ -73,32 +73,32 @@ module.exports = {
       '@Services': path.resolve(paths.appSrc, 'services')
     },
   },
-
+  devtool: 'eval-source-map',
   module: {
     rules: [{
-        test: /\.(js|ts|jsx|tsx)$/,
-        use: ['babel-loader'],
-        exclude: /node_modules/
-      },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader']
-      },
-      {
-        test: /\.svg$/,
-        use: ['svgo-loader']
-      },
-      {
-        test: /\.(jpe?g|png|gif)$/i,
-        loaders: [
-          'file-loader?hash=sha512&digest=hex&name=img/[hash].[ext]',
-          'image-webpack-loader?bypassOnDebug&optipng.optimizationLevel=7&gifsicle.interlaced=false'
-        ]
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf)$/,
-        loader: ['file-loader?name=fonts/[name].[ext]']
-      }
+      test: /\.(js|ts|jsx|tsx)$/,
+      use: ['babel-loader'],
+      exclude: /node_modules/
+    },
+    {
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader', 'postcss-loader']
+    },
+    {
+      test: /\.svg$/,
+      use: ['svgo-loader']
+    },
+    {
+      test: /\.(jpe?g|png|gif)$/i,
+      loaders: [
+        'file-loader?hash=sha512&digest=hex&name=img/[hash].[ext]',
+        'image-webpack-loader?bypassOnDebug&optipng.optimizationLevel=7&gifsicle.interlaced=false'
+      ]
+    },
+    {
+      test: /\.(woff|woff2|eot|ttf)$/,
+      loader: ['file-loader?name=fonts/[name].[ext]']
+    }
     ]
   },
   plugins: [
@@ -108,5 +108,5 @@ module.exports = {
     }]),
     ...htmlPlugins,
     new webpack.NamedModulesPlugin()
-  ],  
+  ],
 };

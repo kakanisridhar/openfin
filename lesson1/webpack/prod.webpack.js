@@ -18,11 +18,7 @@ module.exports = merge({
 })(commonClientConfig, {
   mode: 'production',
   devtool: false,
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx'],
-    alias: {
-      Components: path.resolve(paths.appSrc, 'components'),
-      Containers: path.resolve(paths.appSrc, 'containers'),
-    },
+  optimization: {
+    minimize: true
   }
 });
