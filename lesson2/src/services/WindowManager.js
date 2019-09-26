@@ -1,10 +1,12 @@
+import { navigate } from "@reach/router"
+
 class WindoManager {
   constructor(isAppWindow) {
     this.isAppWindow = isAppWindow;
   }
 
   launchWindow(name, options) {
-    if (fin) {
+    if (typeof(fin) !== "undefined") {
       const defaultOptions = {
         name,
         url: `/${name}`,
@@ -21,7 +23,7 @@ class WindoManager {
       const win = fin.Window.create(windowOptions);
       win.then(W => W.show());
     } else {
-      console.log("Not yet implemented");
+      navigate(`/${name}`);
     }
   }
 }

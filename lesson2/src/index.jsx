@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Router, Link } from '@reach/router';
 import  Navigation  from './pages/navigation';
 import  Members  from './pages/members';
+import  Window3  from './pages/windows3';
 import WindowManager from './services/WindowManager';
 import * as serviceWorker from './serviceWorker';
 
@@ -16,10 +17,14 @@ const screens = [
     height:'400',
     width: '400'
   }, 
+  {
+    path:'window3',
+    component:Window3,
+    height:'400',
+    width: '400'
+  }, 
 ];
 
-let Home = () => <div>Home</div>
-let Dash = () => <div>Dash</div>
 
 const App = () => {
 
