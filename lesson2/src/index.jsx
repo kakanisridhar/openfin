@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Router, Link } from '@reach/router';
 import  Navigation  from './pages/navigation';
 import  Members  from './pages/members';
-import  Window3  from './pages/windows3';
+import  Window3  from './pages/window3';
 import WindowManager from './services/WindowManager';
 import * as serviceWorker from './serviceWorker';
 
