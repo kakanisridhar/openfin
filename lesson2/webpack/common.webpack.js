@@ -10,7 +10,7 @@ const paths = require('./paths');
 
 module.exports = {
   mode: 'development',
-  entry: path.resolve(paths.appSrc, 'index.jsx'),
+  entry:  path.resolve(paths.appSrc, 'index.jsx'),
   output: {
     path: paths.appBuild,
     filename: '[name].[hash:4].js',

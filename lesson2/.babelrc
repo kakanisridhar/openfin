@@ -7,7 +7,7 @@
       {
         "modules": false,
         "targets": {
-          "browsers": ["last 2 versions"]
+          "chrome": "76"
         },
         "useBuiltIns": "entry",
         "corejs": "3.0.0"
@@ -32,6 +32,7 @@
     "@babel/plugin-syntax-dynamic-import",
     "@babel/plugin-proposal-class-properties",
     "@babel/plugin-proposal-throw-expressions",
+    "@babel/plugin-transform-runtime",
     "@babel/plugin-proposal-function-bind",
     [
       "react-hot-loader/babel",

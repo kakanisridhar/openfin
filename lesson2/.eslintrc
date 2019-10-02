@@ -32,7 +32,7 @@
     "import/resolver": {
       "node": {
         "paths": ["."],
-        "extensions": [".js", ".ts", ".tsx"]
+        "extensions": [".js",".jsx",".ts", ".tsx"]
       }
     }
   },

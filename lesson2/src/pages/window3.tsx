@@ -2,10 +2,6 @@ import React from 'react';
 import WindowManager from '@Services/WindowManager';
 import Button from '@material-ui/core/Button';
 
-
-const winManager = new WindowManager(false);
-
-
 class Window3 extends React.Component {
 
   constructor(props: any) {
@@ -14,8 +10,7 @@ class Window3 extends React.Component {
   }
 
   launchWindow() {
-    //Use windowmanagers launch window here 
-    winManager.launchWindow("members");
+    WindowManager.launchWindow("members");
   }
 
   render() {
