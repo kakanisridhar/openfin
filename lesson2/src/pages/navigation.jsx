@@ -1,5 +1,7 @@
 import React from 'react';
 
+import WindowInfo from '../components/WindowInfo';
+
 const MenuLink = ({ url, options, onMenuClicked }) => {
   function handleClick(e) {
     e.preventDefault();
@@ -18,7 +20,11 @@ const Navigation = ({ screens, winLauncher }) => {
       <MenuLink url={s.path} options={s.options} onMenuClicked={winLauncher} />
     </li>
   ));
-  return <ul>{listItems}</ul>;
+  return <div>
+    <WindowInfo />
+    <ul>{listItems}</ul>;
+  </div>
+  
 };
 
 export default Navigation;
