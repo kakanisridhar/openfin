@@ -1,10 +1,14 @@
 /* eslint-disable no-console */
-import { navigate } from '@reach/router';
 import { uniqueId, extend } from 'underscore';
 
+declare var fin: any;
+
+const appId = process.env.APP_UUID;
+
 const initWindowCode = () => {
-  // resize window
   (async () => {
+
+    // resize window
     const me = await fin.Window.getCurrent();
     const bounds = await me.getBounds();
     // eslint-disable-next-line no-undef
@@ -19,11 +23,23 @@ const initWindowCode = () => {
     const newHeight = desiredHeight + windowWidthHeightDiff;
 
     await me.resizeTo(newWidth, newHeight, 'top-left');
+
+
+    //Setup windowname listener
+
+    //setup window closing listener
+
+
     await me.show();
+
+
   })();
+
+ 
 };
 
 class WindoManager {
+
   static async launchWindow(name, options) {
     if (typeof fin !== 'undefined') {
       // this will make us launch window always even if ther is existing window by that name
@@ -53,9 +69,7 @@ class WindoManager {
         .replace('WINDOW_WIDTH', winOptions.defaultWidth);
 
       await win.executeJavaScript(body);
-    } else {
-      navigate(`/${name}`);
-    }
+    } 
   }
 }
 

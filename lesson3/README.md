@@ -7,6 +7,7 @@ Also not tested other than Windows
 Please follow the instruction below to build/run this code
 
 ## prepare your dev environment
+- npm install --global npm-run-all
 - npm install --global eslint
 - npm install --global prettier
 - disable jshint on vs code

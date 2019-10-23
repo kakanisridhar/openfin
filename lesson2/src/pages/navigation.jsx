@@ -22,9 +22,8 @@ const Navigation = ({ screens, winLauncher }) => {
   ));
   return <div>
     <WindowInfo />
-    <ul>{listItems}</ul>;
+    <ul>{listItems}</ul>
   </div>
-  
 };
 
 export default Navigation;

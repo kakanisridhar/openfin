@@ -6,6 +6,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const _ = require('lodash');
 
 const paths = require('./paths');
 
@@ -69,12 +70,16 @@ module.exports = {
     ]
   },
   plugins: [
-    new CopyWebpackPlugin([
-      {
-        from: paths.appAssets,
-        to: '.'
+    new CopyWebpackPlugin([{
+      from: paths.appAssets + '/app.json',
+      to: '.',
+      transform(content, pathname) {
+        const templ = content.toString('utf8'); 
+        const compiled = _.template(templ);
+        const str = compiled({'APP_UUID': process.env.APP_UUID});
+        return Buffer.from(str);
       }
-    ]),
+    }]),
     new MiniCssExtractPlugin({
       filename: 'style.[contenthash].css'
     }),

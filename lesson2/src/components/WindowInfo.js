@@ -8,12 +8,14 @@ export default class WindowInfo extends React.Component {
       WI: {},
       MainWindow: true
     };
+    this.appid = process.env.APP_UUID;
   }
+  
 
   render() {
     return (
       <div>
-        
+        app id = {this.appid}
         <p>Is main window = {JSON.stringify(this.state.MainWindow)}</p>
 
         <p>Name = {JSON.stringify(this.state.WI.name)}</p>

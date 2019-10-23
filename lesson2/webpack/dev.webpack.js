@@ -16,7 +16,7 @@ module.exports = merge({
   mode: 'development',
   devServer: {
     contentBase: paths.appBuild,
-    compress: true,
+    compress: false,
     port: 3000,
     historyApiFallback: true
   }

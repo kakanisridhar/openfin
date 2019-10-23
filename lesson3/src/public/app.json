@@ -3,7 +3,7 @@
         "name": "Learning openfin",
         "description": "Learning openfin",
         "url": "http://localhost:3000",
-        "uuid": "mridasoft-learning-openfin",
+        "uuid": "<%= APP_UUID %>",
         "autoShow": true,
         "defaultHeight": "600",
         "defaultWidth": "200",
