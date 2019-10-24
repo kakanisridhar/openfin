@@ -6,9 +6,8 @@ declare var fin: any;
 const appId = process.env.APP_UUID;
 
 const initWindowCode = () => {
+  // resize window
   (async () => {
-
-    // resize window
     const me = await fin.Window.getCurrent();
     const bounds = await me.getBounds();
     // eslint-disable-next-line no-undef
@@ -21,32 +20,30 @@ const initWindowCode = () => {
     const windowWidthHeightDiff = totalHeight - window.innerHeight;
     const newWidth = desiredWidth + windowWidthDiff;
     const newHeight = desiredHeight + windowWidthHeightDiff;
-
     await me.resizeTo(newWidth, newHeight, 'top-left');
-
-
-    //Setup windowname listener
-
-    //setup window closing listener
-
-
     await me.show();
-
-
   })();
-
- 
 };
 
 class WindoManager {
-
   static async launchWindow(name, options) {
     if (typeof fin !== 'undefined') {
-      // this will make us launch window always even if ther is existing window by that name
-      const winName = uniqueId(name);
+      const app = await fin.Application.getCurrent();
+      const childWindows = await app.getChildWindows();
+      for (let i = 0; i < childWindows.length; i++) {
+        const childWindowOptions = await childWindows[i].getOptions();
+        if (childWindowOptions.name === name) {
+          if (childWindows[i]) {
+            childWindows[i].bringToFront();
+            return;
+          }
+          break;
+        }
+      }
+
       const defaultOptions = {
         autoShow: false,
-        name: winName,
+        name: name,
         url: `/${name}`,
         resizable: true,
         defaultCentered: true,
@@ -69,7 +66,7 @@ class WindoManager {
         .replace('WINDOW_WIDTH', winOptions.defaultWidth);
 
       await win.executeJavaScript(body);
-    } 
+    }
   }
 }
 
