@@ -1,6 +1,7 @@
 import React from 'react';
 import WindowManager from '@Services/WindowManager';
 import Button from '@material-ui/core/Button';
+import Messenger from '../components/Messenger';
 
 class Window3 extends React.Component {
 
@@ -14,12 +15,16 @@ class Window3 extends React.Component {
   }
 
   render() {
+    let topics = ["lo:internal","lo:windows"];
     return (
       <div>
         hmr or full refresh
         <Button variant="contained" color="primary" onClick = {this.launchWindow}>>
           Hello World
         </Button>
+
+        <Messenger topics = {topics} windowid = "window3"></Messenger>
+        
       </div>
     )
   }

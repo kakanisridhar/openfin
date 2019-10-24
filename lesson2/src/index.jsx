@@ -2,32 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from '@reach/router';
 import Navigation from './pages/navigation';
-import Members from './pages/members';
-import Window3 from './pages/window3';
 import WindowManager from './services/WindowManager';
 import * as serviceWorker from './serviceWorker';
-
-const screens = [
-  {
-    path: 'members',
-    component: Members,
-    options: {
-      defaultHeight: '400',
-      defaultWidth: '400'
-    }
-  },
-  {
-    path: 'window3',
-    component: Window3,
-    options: {
-      defaultHeight: '200',
-      defaultWidth: '200'
-    }
-  }
-];
+import Routes from './Routes';
 
 const App = () => {
-  const configureRoutes = screens.map(s => {
+  const configureRoutes = Routes.map(s => {
     const Screen = s.component;
     return <Screen key={s.path} path={s.path} />;
   });
@@ -37,7 +17,7 @@ const App = () => {
       <Router>
         <Navigation
           path="/"
-          screens={screens}
+          screens={Routes}
           winLauncher={WindowManager.launchWindow}
         />
         {configureRoutes}

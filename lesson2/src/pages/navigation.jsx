@@ -1,6 +1,8 @@
 import React from 'react';
 
-import WindowInfo from '../components/WindowInfo';
+import Messenger from '../components/Messenger';
+
+const appId = process.env.APP_UUID;
 
 const MenuLink = ({ url, options, onMenuClicked }) => {
   function handleClick(e) {
@@ -20,9 +22,14 @@ const Navigation = ({ screens, winLauncher }) => {
       <MenuLink url={s.path} options={s.options} onMenuClicked={winLauncher} />
     </li>
   ));
+
+  let topics = ["lo:internal","lo:windows"];
+
   return <div>
-    <WindowInfo />
+    {appId}
     <ul>{listItems}</ul>
+    <hr></hr>
+    <Messenger topics={topics} windowid = "navigation"></Messenger>
   </div>
 };
 

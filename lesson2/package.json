@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm-run-all --parallel dev launchopenfin",
-    "launchopenfin": "wait-on http://localhost:3000 && openfin --launch --config build/app.json",
+    "launchopenfin": "wait-on http://localhost:3000 && openfin --launch --config http://localhost:3000/app.json",
     "dev": "cross-env NODE_ENV=local webpack-dev-server --config webpack/dev.webpack.js",
     "build:dev": "rimraf build && cross-env NODE_ENV=dev webpack --config webpack/dev.webpack.js",
     "start:prod": "cross-env serve -s ./build/",

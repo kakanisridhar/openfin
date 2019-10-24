@@ -35,6 +35,7 @@ class WindoManager {
         if (childWindowOptions.name === name) {
           if (childWindows[i]) {
             childWindows[i].bringToFront();
+            childWindows[i].flash();
             return;
           }
           break;
@@ -66,6 +67,7 @@ class WindoManager {
         .replace('WINDOW_WIDTH', winOptions.defaultWidth);
 
       await win.executeJavaScript(body);
+
     }
   }
 }
