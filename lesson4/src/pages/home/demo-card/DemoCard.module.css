@@ -1,0 +1,36 @@
+.container {
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
+    user-select: none;
+    cursor: pointer;
+}
+
+.container:hover {
+    background-color: var(--color-white-darkened);
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2);
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    line-height: 30px;
+}
+
+.name {
+    font-weight: bold;
+    font-size: var(--size-font-large);
+    flex: 1;
+}
+
+.description {
+    font-size: var(--size-font-small);
+}
+
+.icon {
+    color: var(--color-openfin-blue);
+}
+
+.iconRotate {
+    transform: rotate(45deg);
+}

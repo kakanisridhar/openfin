@@ -1,0 +1,72 @@
+.subtitle {
+  color: var(--color-grey-dark);
+  user-select: none;
+}
+
+.containerApp {
+  background-image: url("./images/bg.png");
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.containerHeader {
+  --width-logo: 200px;
+  align-items: center;
+  padding: var(--padding-medium);
+  flex: 0 0 75px;
+  cursor: grab;
+  -webkit-app-region: drag;
+}
+
+.containerLogoOpenfin {
+  position: absolute;
+  width: var(--width-logo);
+  left: calc(50% - var(--width-logo) / 2);
+  top: var(--padding-medium);
+  cursor: pointer;
+}
+
+.subtitleOpenfin {
+  composes: subtitle;
+  position: relative;
+  bottom: 20px;
+  left: 115px;
+}
+
+.containerLogoScottLogic {
+  width: var(--width-logo);
+  height: 80px;
+  position: absolute;
+  right: var(--padding-medium);
+  top: 0;
+}
+
+.containerSubtitleScottLogic {
+  composes: subtitle;
+  position: relative;
+  top: 15px;
+  left: 30px;
+}
+
+.containerContent {
+  margin: var(--margin-medium);
+  flex: 1;
+}
+
+.buttonBack {
+  cursor: pointer;
+  user-select: none;
+  width: 25px;
+  height: 25px;
+  margin-top: var(--margin-large);
+}
+
+.buttonBackDisabled {
+  cursor: default;
+  color: var(--color-grey-light);
+}
+
+.buttonBack:not(.buttonBackDisabled):hover {
+  color: var(--color-grey-dark);
+}

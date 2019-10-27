@@ -1,0 +1,22 @@
+.container {
+    composes: container from '../../styles/demo-content.module.css';
+}
+
+.title {
+    composes: title from '../../styles/demo-content.module.css';
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: var(--margin-medium);
+}
+
+.buttonDock {
+    margin-right: var(--margin-small);
+}
+
+.smallInput {
+    width: 45px;
+    margin: 0 5px;
+}
