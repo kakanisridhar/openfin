@@ -1,12 +1,6 @@
-body {
-	overflow-x: hidden;
+@import "~@blueprintjs/core/lib/scss/variables";
+
+.App {
+  text-align: center;
 }
 
-.clickable-icon {
-	cursor: pointer;
-}
-
-.response-container-wrapper {
-	height: 500px;
-	width: 100%;
-}

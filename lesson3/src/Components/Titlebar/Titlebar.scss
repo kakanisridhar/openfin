@@ -1,0 +1,21 @@
+@import "~@blueprintjs/core/lib/scss/variables";
+
+.titlebar {
+  -webkit-app-region: drag;
+  display: flex;
+  flex-direction: row-reverse;
+  height: 35px;
+  background-color: $gray1;
+
+  &__icons {
+    display: flex;
+    align-items: center;
+    -webkit-app-region: no-drag;
+    justify-content: space-around;
+
+    span {
+      margin: 0 5px 0 5px;
+      cursor: pointer;
+    }
+  }
+}
