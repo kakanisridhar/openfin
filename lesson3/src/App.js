@@ -7,25 +7,12 @@ import { OpenfinApiHelpers } from './Services';
 
 function App() {
   //dock window to left
-  /*const [edge, actions] = useDockWindow(
-    ScreenEdge.LEFT,
-    OpenfinApiHelpers.getCurrentWindowSync,
-    true,
-    enableStretchToFit ? dimensions : undefined,
-    {
-        undockPosition: undockTop && undockLeft
-            ? { top: undockTop, left: undockLeft }
-            : undefined,
-        undockSize: undockWidth && undockHeight
-            ? { width: undockWidth, height: undockHeight }
-            : undefined,
-    },
-  );*/
+  const [edge, actions] = useDockWindow(ScreenEdge.LEFT);
 
   return (
     <React.Fragment>
        <TitleBar></TitleBar> 
-       <div className="App bp3-elevation-5"> 
+       <div className="App"> 
        <ButtonGroup minimal={true}>
         <Button icon="database">Queries</Button>
         <Button icon="function">Functions</Button>
