@@ -5,6 +5,7 @@ import Navigation from './pages/navigation';
 import WindowManager from './services/WindowManager';
 import * as serviceWorker from './serviceWorker';
 import Routes from './Routes';
+import 'antd/dist/antd.css';
 
 const App = () => {
   const configureRoutes = Routes.map(s => {

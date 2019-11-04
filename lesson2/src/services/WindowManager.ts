@@ -35,6 +35,7 @@ class WindoManager {
         if (childWindowOptions.name === name) {
           if (childWindows[i]) {
             childWindows[i].bringToFront();
+            childWindows[i].show();
             childWindows[i].flash();
             return;
           }
