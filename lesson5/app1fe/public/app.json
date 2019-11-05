@@ -1,0 +1,36 @@
+{
+    "startup_app": {
+        "name": "eq-pms-of-l1",
+        "description": "eq-pms-of-l1",
+        "url": "http://localhost:3000/login",
+        "uuid": "eq-pms-of-l1",
+        "autoShow": true,
+        "defaultHeight": 350,
+        "defaultWidth": 350,
+        "defaultCentered": true,
+        "frame": true,
+        "contextMenu": true,
+        "nonPersistent": true,
+        "saveWindowState": false,
+        "resizable": true
+    },
+    "services": [
+        {
+            "name": "layouts",
+            "config": {
+                "features": {
+                    "tab": false
+                }
+            }
+        }
+    ],
+    "runtime": {
+        "arguments": "",
+        "version": "13.76.45.13"
+    },
+    "shortcut": {
+        "company": "Mridasoft",
+        "description": "eq-pms-of-l1",
+        "name": "eq-pms-of-l1"
+    }
+}
