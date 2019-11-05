@@ -4,6 +4,7 @@ import { Route, withRouter, Switch } from "react-router-dom";
 
 import { getCurrentUser, logout } from "./util/APIUtils";
 
+import LoadingIndicator from "./components/LoadingIndicator";
 import SideNav from "./sidenav/SideNav";
 import TopNav from "./topnav/TopNav";
 import Login from "./user/login/Login";
@@ -13,7 +14,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentUser: null,
       isAuthenticated: false,
+      isLoading: true
     };
     this.handleLogout = this.handleLogout.bind(this);
     this.loadCurrentUser = this.loadCurrentUser.bind(this);
@@ -23,24 +26,28 @@ class App extends React.Component {
   loadCurrentUser() {
     getCurrentUser()
       .then(response => {
-        console.log("logged in user -" + JSON.stringify(response));
         this.setState({
+          currentUser: response,
           isAuthenticated: true,
+          isLoading: false
         });
       })
       .catch(error => {
-        console.log("Error getting current user");
+        this.setState({
+          isLoading: false
+        });
       });
   }
 
   componentDidMount() {
-    console.log("app.js componentDidMount state="+JSON.stringify(this.state));
     if(this.props.location.pathname === "/login") {
       logout();
+      this.setState({
+        isLoading: false
+      });
     } else {
       this.loadCurrentUser();
     }
-    console.log("componentDidMount** is user logged in = "+ this.state.isAuthenticated);
   }
 
   handleLogout(
@@ -50,6 +57,7 @@ class App extends React.Component {
   ) {
     logout();
     this.setState({
+      currentUser: null,
       isAuthenticated: false
     });
 
@@ -61,16 +69,17 @@ class App extends React.Component {
   handleLogin() {
     this.setState({
       isAuthenticated: true,
+      isLoading: false
     })
-    this.props.history.push("/");
+    this.props.history.push("/app");
   }
 
   render() {
-    console.log("app.js render state="+JSON.stringify(this.state));
-    console.log("rendering for path "+ this.props.location.pathname);
+    if (this.state.isLoading) {
+      return <LoadingIndicator />;
+    }
     return (
       <div className="container">
-        you are at {this.props.location.pathname} you are {this.state.isAuthenticated? "authenticated":"not authenticated"}
         <Switch>
           <Route
             path="/login"
@@ -78,14 +87,15 @@ class App extends React.Component {
           ></Route>
           <PrivateRoute
             authenticated={this.state.isAuthenticated}
-            path="/"
-            component={TopNav}
-            handleLogout={this.handleLogout}
+            path="/sidenav"
+            component={SideNav}
           ></PrivateRoute>
           <PrivateRoute
             authenticated={this.state.isAuthenticated}
-            path="/sidenav"
-            component={SideNav}
+            exact
+            path="/app"
+            component={TopNav}
+            handleLogout={this.handleLogout}
           ></PrivateRoute>
           <Route>
             <h2>404</h2>

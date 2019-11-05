@@ -5,12 +5,12 @@ import { OpenfinApiHelpers } from '../services';
 import { logout } from "../util/APIUtils";
 
 function TopNav() {
-
+  
   let _curWin = OpenfinApiHelpers.getCurrentWindowSync()
   const [edge, actions] = useDockWindow(ScreenEdge.TOP,_curWin,false, {
     dockedHeight: 100
   });  
-
+  
   useEffect(
     () => {
       return () => {

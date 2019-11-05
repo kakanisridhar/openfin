@@ -4,7 +4,6 @@ const Screens = [
     {
         path: "/sidenav",
         name: "SideNav",
-        component: SideNav,
         options: {
             width: 100,
             height: 500,
