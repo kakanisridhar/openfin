@@ -1,20 +1,28 @@
-import React, { useState } from 'react';
-import { Button, Intent  } from '@blueprintjs/core';
+import React, { Component } from 'react'
 import { OpenfinApiHelpers } from '../services';
 
-function SideNavButton() {
-    const [sideNavWin, setSideNavWin] = useState();
-    const [sideNavVisible, setNavVisibility] = useState(false);
-    const _intent = sideNavVisible ?  Intent.SUCCESS : Intent.NONE;
-    const toggleNavVisibility = async () => {
-        let visible = !sideNavVisible;
+import { Button,Intent } from "@blueprintjs/core";
+
+class SideNavButton extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            sideNavWin: null,
+            sideNavVisible: false
+        }
+        this.toggleNavVisibility = this.toggleNavVisibility.bind(this);
+    }
+        
+    async toggleNavVisibility() {
+        let visible = !this.state.sideNavVisible;
+        let sideNavWin = this.state.sideNavWin;
         if(visible && sideNavWin == null) {
-            let _win  = await OpenfinApiHelpers.launchScreen("SideNav");
-            setSideNavWin(_win);
+            sideNavWin  = await OpenfinApiHelpers.launchScreen("SideNav");
+            this.setState({sideNavWin: sideNavWin});
         }
         
         if(sideNavWin != null) {
-            setNavVisibility(visible);
+            this.setState({sideNavVisible: visible});
             if(visible) {
                 sideNavWin.show();
                 sideNavWin.focus();
@@ -23,9 +31,15 @@ function SideNavButton() {
             }
         }
     };
-    return (
-        <Button icon="menu" intent={_intent} onClick={toggleNavVisibility}></Button>
-    )
+
+    render() {
+        const _intent = this.state.sideNavVisible ?  Intent.SUCCESS : Intent.NONE;
+        return (
+            <>
+                <Button icon="menu" intent={_intent} onClick={this.toggleNavVisibility}></Button>
+            </>
+        )
+    }
 }
 
 export default SideNavButton;

@@ -38,11 +38,9 @@ export const launchScreen = async (name,options) => {
     }
   }
 
-  console.log("No child windows with specified name exist");
   let screen = Screens.find( S => S.name===name );
 
   if(screen !== undefined) {
-    console.log("creating window");
     const defaultOptions = {
       autoShow: false,
       name: name,

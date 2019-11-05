@@ -7,16 +7,13 @@ import { getCurrentUser, logout } from "./util/APIUtils";
 import SideNav from "./sidenav/SideNav";
 import TopNav from "./topnav/TopNav";
 import Login from "./user/login/Login";
-import LoadingIndicator from "./components/LoadingIndicator";
 import PrivateRoute from "./PrivateRoute";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: null,
       isAuthenticated: false,
-      isLoading: false
     };
     this.handleLogout = this.handleLogout.bind(this);
     this.loadCurrentUser = this.loadCurrentUser.bind(this);
@@ -24,26 +21,26 @@ class App extends React.Component {
   }
 
   loadCurrentUser() {
-    this.setState({
-      isLoading: true
-    });
     getCurrentUser()
       .then(response => {
+        console.log("logged in user -" + JSON.stringify(response));
         this.setState({
-          currentUser: response,
           isAuthenticated: true,
-          isLoading: false
         });
       })
       .catch(error => {
-        this.setState({
-          isLoading: false
-        });
+        console.log("Error getting current user");
       });
   }
 
   componentDidMount() {
-    this.loadCurrentUser();
+    console.log("app.js componentDidMount state="+JSON.stringify(this.state));
+    if(this.props.location.pathname === "/login") {
+      logout();
+    } else {
+      this.loadCurrentUser();
+    }
+    console.log("componentDidMount** is user logged in = "+ this.state.isAuthenticated);
   }
 
   handleLogout(
@@ -53,7 +50,6 @@ class App extends React.Component {
   ) {
     logout();
     this.setState({
-      currentUser: null,
       isAuthenticated: false
     });
 
@@ -64,19 +60,17 @@ class App extends React.Component {
 
   handleLogin() {
     this.setState({
-      currentUser: null,
       isAuthenticated: true,
-      isLoading: false
     })
     this.props.history.push("/");
   }
 
   render() {
-    if (this.state.isLoading) {
-      return <LoadingIndicator />;
-    }
+    console.log("app.js render state="+JSON.stringify(this.state));
+    console.log("rendering for path "+ this.props.location.pathname);
     return (
       <div className="container">
+        you are at {this.props.location.pathname} you are {this.state.isAuthenticated? "authenticated":"not authenticated"}
         <Switch>
           <Route
             path="/login"

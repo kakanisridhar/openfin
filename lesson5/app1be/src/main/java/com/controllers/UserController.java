@@ -9,7 +9,9 @@ import com.models.User;
 import com.payload.UserSummary;
 import com.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,10 +42,13 @@ public class UserController {
     }
 
     @GetMapping("/user/me")
-    @PreAuthorize("hasRole('ROLE_USER')")
-    public UserSummary getCurrentUser(@CurrentUser UserDetails currentUser) {
-        UserSummary userSummary = new UserSummary(currentUser.getUsername());
-        return userSummary;
+    @Secured({ "ROLE_USER", "ROLE_ADMIN" })
+    public UserSummary getCurrentUser(Authentication authentication) {
+        if(authentication!=null) {
+            UserSummary userSummary = new UserSummary(authentication.getName());
+            return userSummary;
+        }
+        return null;
     }
 
 }
