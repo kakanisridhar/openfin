@@ -3,7 +3,8 @@ import "./App.scss";
 import { Route, withRouter, Switch } from "react-router-dom";
 
 import { getCurrentUser, logout } from "./util/APIUtils";
-import { OpenfinApiHelpers } from './services';
+
+import SideNav from "./sidenav/SideNav";
 import TopNav from "./topnav/TopNav";
 import Login from "./user/login/Login";
 import LoadingIndicator from "./components/LoadingIndicator";
@@ -86,6 +87,11 @@ class App extends React.Component {
             path="/"
             component={TopNav}
             handleLogout={this.handleLogout}
+          ></PrivateRoute>
+          <PrivateRoute
+            authenticated={this.state.isAuthenticated}
+            path="/sidenav"
+            component={SideNav}
           ></PrivateRoute>
           <Route>
             <h2>404</h2>

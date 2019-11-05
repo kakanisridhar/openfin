@@ -1,1 +1,0 @@
-In this lesson we will learn how to start openfin applicaion and create a frameless window

@@ -4,7 +4,8 @@ import {
     getCurrentWindowSync,
     getChildWindows,
     getCurrentWindowOptions,
-    sendInterApplicationMessage
+    sendInterApplicationMessage,
+    launchScreen
   } from './openfinApiHelpers';
 
 export const OpenfinApiHelpers = {
@@ -13,5 +14,6 @@ export const OpenfinApiHelpers = {
     getCurrentWindowSync,
     getChildWindows,
     getCurrentWindowOptions,
-    sendInterApplicationMessage
+    sendInterApplicationMessage,
+    launchScreen
   };
