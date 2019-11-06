@@ -3,6 +3,8 @@ import { login, logout } from "../../util/APIUtils";
 import "./Login.css";
 import { ACCESS_TOKEN } from "../../constants";
 import { ErrorToast } from "../../components/ErrorToast";
+import TitleBar from '../../components/Titlebar';
+import { OpenfinApiHelpers } from '../../services';
 
 import {
   Button,
@@ -48,28 +50,31 @@ class Login extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <Card interactive={true} elevation={Elevation.TWO}>
-          <h1>Login</h1>
-          <FormGroup
-            label="User name"
-            labelFor="username"
-            labelInfo="(required)"
-          >
-            <InputGroup id="username" placeholder="username" onChange = {this.handleChange}/>
-          </FormGroup>
-          <FormGroup
-            label="Password"
-            labelFor="password"
-            labelInfo="(required)"
-          >
-            <InputGroup id="password" placeholder="password" onChange = {this.handleChange} type="password"/>
-          </FormGroup>
-          <Button className="bp3-intent-primary" type="submit">
-            Login
-          </Button>
+      <React.Fragment>
+        <TitleBar onClose={OpenfinApiHelpers.quitApp}></TitleBar>
+        <Card interactive={true} elevation={Elevation.ZERO}>
+          <form onSubmit={this.handleSubmit}>
+            <h1>Login</h1>
+            <FormGroup
+              label="User name"
+              labelFor="username"
+              labelInfo="(required)"
+            >
+              <InputGroup id="username" placeholder="username" onChange = {this.handleChange}/>
+            </FormGroup>
+            <FormGroup
+              label="Password"
+              labelFor="password"
+              labelInfo="(required)"
+            >
+              <InputGroup id="password" placeholder="password" onChange = {this.handleChange} type="password"/>
+            </FormGroup>
+            <Button className="bp3-intent-primary" type="submit">
+              Login
+            </Button>
+          </form>
         </Card>
-      </form>
+      </React.Fragment>
     );
   }
 }

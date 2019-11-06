@@ -5,11 +5,28 @@ const Screens = [
         path: "/sidenav",
         name: "SideNav",
         options: {
-            width: 100,
-            height: 500,
-            left: 10,
-            top: 150 
-        }
+            defaultWidth: 200,
+            defaultHeight: 700,
+        },
+        displayInSideNav: false
+    },
+    {
+        path: "/sla",
+        name: "SLA Monitoring",
+        options: {
+            defaultWidth: 500,
+            defaultHeight: 500,
+        },
+        displayInSideNav: true
+    },
+    {
+        path: "/members",
+        name: "Member Locator",
+        options: {
+            defaultWidth: 500,
+            defaultHeight: 500,
+        },
+        displayInSideNav: true
     }
 ]
 

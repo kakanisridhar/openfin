@@ -6,9 +6,10 @@ import { getCurrentUser, logout } from "./util/APIUtils";
 
 import LoadingIndicator from "./components/LoadingIndicator";
 import SideNav from "./sidenav/SideNav";
-import TopNav from "./topnav/TopNav";
+import TopNavContainer from "./topnav/TopNavContainer";
 import Login from "./user/login/Login";
 import PrivateRoute from "./PrivateRoute";
+import SlaContainer from "./SLA/SlaContainer";
 
 class App extends React.Component {
   constructor(props) {
@@ -92,10 +93,19 @@ class App extends React.Component {
           ></PrivateRoute>
           <PrivateRoute
             authenticated={this.state.isAuthenticated}
-            exact
             path="/app"
-            component={TopNav}
+            component={TopNavContainer}
             handleLogout={this.handleLogout}
+          ></PrivateRoute>
+          <PrivateRoute
+            authenticated={this.state.isAuthenticated}
+            path="/sla"
+            component={SlaContainer}
+          ></PrivateRoute>
+          <PrivateRoute
+            authenticated={this.state.isAuthenticated}
+            path="/members"
+            component={SlaContainer}
           ></PrivateRoute>
           <Route>
             <h2>404</h2>

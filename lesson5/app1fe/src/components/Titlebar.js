@@ -6,7 +6,7 @@ import { Icon, Intent } from "@blueprintjs/core";
 
 import './Titlebar.scss';
 
-export default () => {
+export default ({onClose}) => {
   const isDocked = useDocked();
 
   const onMinimizeClick = useCallback(async () => {
@@ -17,6 +17,9 @@ export default () => {
   const onCloseClick = useCallback(async () => {
     const currentWindow = await OpenfinApiHelpers.getCurrentWindow();
     currentWindow.close();
+    if(onClose!=undefined) {
+      onClose();
+    }
   }, []);
 
   const onUndockClick = useCallback(async () => {

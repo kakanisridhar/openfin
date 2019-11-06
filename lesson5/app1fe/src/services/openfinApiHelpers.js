@@ -1,5 +1,9 @@
 import Screens from '../screens';
 
+export const quitApp = async () => {
+  const app = await window.fin.Application.getCurrent();
+  return await app.terminate();
+};
 
 export const createWindow = async windowOptions => {
   return await window.fin.Window.create(windowOptions);
@@ -47,10 +51,11 @@ export const launchScreen = async (name,options) => {
       url: screen.path,
       resizable: true,
       frame: false,
-      defaultHeight: screen.options.height,
-      defaultWidth: screen.options.width,
-      defaultLeft: screen.options.left,
-      defaultTop: screen.options.top
+      defaultHeight: screen.options.defaultHeight,
+      defaultWidth: screen.options.defaultWidth,
+      defaultLeft: screen.options.defaultLeft,
+      defaultTop: screen.options.defaultTop,
+      saveWindowState: false
     };
     let combinedOptions = Object.assign({},defaultOptions,options);
     console.log("window options " +  JSON.stringify(combinedOptions));

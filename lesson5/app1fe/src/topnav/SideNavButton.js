@@ -17,7 +17,10 @@ class SideNavButton extends Component {
         let visible = !this.state.sideNavVisible;
         let sideNavWin = this.state.sideNavWin;
         if(visible && sideNavWin == null) {
-            sideNavWin  = await OpenfinApiHelpers.launchScreen("SideNav");
+            let _win = OpenfinApiHelpers.getCurrentWindowSync()
+            let bounds = await _win.getBounds();
+            sideNavWin  = await OpenfinApiHelpers.launchScreen("SideNav",
+                                {defaultTop:bounds.bottom + 2, defaultLeft:bounds.left});
             this.setState({sideNavWin: sideNavWin});
         }
         
