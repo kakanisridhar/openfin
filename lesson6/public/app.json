@@ -1,29 +1,21 @@
 {
     "startup_app": {
-        "name": "eq-pms-of-l1",
-        "description": "eq-pms-of-l1",
+        "name": "admje",
+        "description": "admje",
         "url": "http://localhost:3000/app",
-        "uuid": "eq-pms-of-l1",
+        "uuid": "eq-pms-admje",
         "autoShow": true,
-        "defaultHeight": 400,
-        "defaultWidth": 400,
-        "defaultCentered": true,
-        "frame": false,
+        "defaultLeft": 0,
+        "defaultTop": 100,
+        "defaultHeight": 600,
+        "defaultWidth": 250,
+        "defaultCentered": false,
+        "frame": true,
         "contextMenu": true,
         "nonPersistent": true,
         "saveWindowState": false,
         "resizable": true
     },
-    "services": [
-        {
-            "name": "layouts",
-            "config": {
-                "features": {
-                    "tab": false
-                }
-            }
-        }
-    ],
     "runtime": {
         "arguments": "",
         "version": "13.76.45.13"

@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { uniqueId, extend } from 'underscore';
+import { uniqueId, extend } from 'lodash';
 
 declare var fin: any;
 
@@ -44,7 +44,7 @@ class WindoManager {
       }
 
       const defaultOptions = {
-        autoShow: false,
+        autoShow: true,
         name: name,
         url: `/${name}`,
         resizable: true,
@@ -58,7 +58,7 @@ class WindoManager {
 
       const win = await fin.Window.create(winOptions);
 
-      const body = initWindowCode
+      /*const body = initWindowCode
         .toString()
         .slice(
           initWindowCode.toString().indexOf('{') + 1,
@@ -67,7 +67,7 @@ class WindoManager {
         .replace('WINDOW_HEIGHT', winOptions.defaultHeight)
         .replace('WINDOW_WIDTH', winOptions.defaultWidth);
 
-      await win.executeJavaScript(body);
+      await win.executeJavaScript(body);*/
 
     }
   }

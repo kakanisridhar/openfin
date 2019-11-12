@@ -9,11 +9,12 @@
         "defaultWidth": "200",
         "defaultLeft": 0,
         "defaultTop": 10,
-        "nonPersistent": true
+        "nonPersistent": true,
+        "saveWindowState": false
     },
     "runtime": {
         "arguments": "",
-        "version": "stable"
+        "version": "13.76.45.13"
     },
     "shortcut": {
         "company": "Mridasoft",

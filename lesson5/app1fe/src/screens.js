@@ -14,8 +14,8 @@ const Screens = [
         path: "/sla",
         name: "SLA Monitoring",
         options: {
-            defaultWidth: 500,
-            defaultHeight: 500,
+            defaultWidth: 400,
+            defaultHeight: 400,
         },
         displayInSideNav: true
     },
